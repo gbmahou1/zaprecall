@@ -1,0 +1,57 @@
+.initialScreen
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.initialScreen img
+{
+    display: block;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.initialScreenLogo
+{
+    height: 30%;
+    width: 20%;
+    margin: auto;
+}
+
+.initialScreenButton
+{
+    width: 20%;
+    height: 8%;
+    display: flex;
+    margin: auto;
+    margin-top: 10%;
+    align-content: center;
+    border: 3px solid yellow;
+    border-radius: 20px;
+}
+
+.initialScreenButton img
+{
+    margin-left: 5px;
+    margin-top: 7%;
+    height: 30%;
+    width: 10%;
+    display: block;
+}
+
+.initialScreenButton p
+{
+    margin-left: 28%;
+    margin-top: 7%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.hide
+{
+    display: none;
+}
