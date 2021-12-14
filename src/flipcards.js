@@ -62,11 +62,40 @@ function FlipCards()
     setBcolor(color);
   }
 
-  const [answerbar, setAnswerBar] = React.useState('');
+  const [hidebar, setHide] = React.useState('');
 
-  function hideAnswerBar(entry)
+  function hideAnswer(bar)
   {
-    setAnswerBar(entry);
+    setHide(bar);
+  }
+
+  const [counter, setCounter] = React.useState(0);
+
+  function Count(props)
+  {
+    if(counter == deck1.length)
+    {
+      changeLastButton('turnbutton hide');
+    
+    }
+    else
+    {
+      setCounter(props);
+    }
+  }
+
+  const [buttonClass, setButtonClass] = React.useState("turnButton hide");
+
+  function changeButton(props)
+  {
+    setButtonClass(props);
+  }
+
+  const [lastButton, setLastButton] = React.useState('turnbutton hide');
+
+  function changeLastButton(props)
+  {
+    setLastButton(props);
   }
 
 
@@ -78,45 +107,47 @@ function FlipCards()
 
         <img class="miniLogo" src="assets/logo-mini.png" alt="logo"/>
   
-        <div class="flashCard">
+        <div data-identifier="flashcard" class="flashCard">
   
-          <div id="cardContent" class = {`flashCardContent ${bcolor}`}>
+          <div id="cardContent" className = {`flashCardContent ${bcolor}`}>
   
-            <div class={`theFront ${side}`}>
+            <div className ={`theFront ${side}`}>
   
-              <div class="flipCardTracker">{contador}/{deck1.length}</div>
-              <div class="questionText">{deck1[contador-1].question}</div>
+              <div data-identifier="counter" class="flipCardTracker">{counter+1}/{deck1.length}</div>
+              <div class="questionText">{deck1[counter].question}</div>
               <img class="turnButton" onClick={()=> flip('hide')} src="assets/turn.png" alt="exit"/>
   
             </div>
   
             <div class="theBack">
   
-              <div class="flipCardTracker">{contador}/{deck1.length}</div>
-              <div class="backTitle">{deck1[contador-1].question}</div>
-              <div class="backText">{deck1[contador-1].answer}</div>
+              <div class="flipCardTracker">{counter+1}/{deck1.length}</div>
+              <div class="backTitle">{deck1[counter].question}</div>
+              <div class="backText">{deck1[counter].answer}</div>
   
-              <div class={`answerBoxes ${answerbar}`}>
+              <div id = "teste" className = {`answerBoxes ${hidebar}`}>
   
-                <div class="answerBox" onClick={() => selectAnswer('black')} style={{borderColor: 'black'}}>
+                <div class = {`answerBox`} onClick={() => {hideAnswer('hidden');  selectAnswer('black'); changeButton('turnButton');}} style={{borderColor: 'black'}}>
                   <div>Aprendi agora</div>
                 </div>
                 
-                <div class="answerBox" onClick={() => selectAnswer('red')} style={{borderColor: 'red'}}>
+                <div class="answerBox" onClick={() => {hideAnswer('hidden');  selectAnswer('red'); changeButton('turnButton');}} style={{borderColor: 'red'}}>
                   <div>Não lembrei</div>
                 </div>
   
-                <div class="answerBox" onClick={() => selectAnswer('green')} style={{borderColor: 'green'}}>
+                <div class="answerBox" onClick={() => {hideAnswer('hidden');  selectAnswer('green'); changeButton('turnButton');}} style={{borderColor: 'green'}}>
                   <div>Lembrei com esforço</div>
                 </div>
   
                 
-                <div class="answerBox" onClick={() => selectAnswer('yellow')} style={{borderColor: 'yellow', fontWeight: 'bold'}}>
+                <div class="answerBox" onClick={() => {hideAnswer('hidden');  selectAnswer('yellow'); changeButton('turnButton');}} style={{borderColor: 'yellow', fontWeight: 'bold'}}>
                   <div>Zap!</div>
                 </div>
               </div>
   
-              <img class="turnButton hide" src="assets/turn.png" alt="exit button"/>
+              <img data-identifier="arrow" class={`${buttonClass}`} onClick={() => {Count(counter+1); selectAnswer(''); hideAnswer(''); changeButton('turnButton hide'); flip('');}}src="assets/turn.png" alt="exit button"/>
+
+              <img class={`${lastButton}`} src="assets/turn.png" alt="exit button2"/>
   
             </div>
   

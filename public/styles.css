@@ -215,3 +215,7 @@
     border: 5px solid yellow;
 }
 
+.hidden
+{
+    visibility: hidden;
+}
