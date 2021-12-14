@@ -8,7 +8,7 @@ export default function InitialScreen() {
   
                 <img src="assets/logo.png"/>
   
-                <div onClick={() => RenderCards()} class="initialScreenButton">
+                <div data-identifier="start-zap-recall" onClick={() => RenderCards()} class="initialScreenButton">
   
           <p>Praticar React</p>
   
