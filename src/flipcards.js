@@ -48,6 +48,8 @@ function FlipCards()
     }
   ];
 
+  const [incorrect, setIncorrect] = React.useState(0);
+
   const [side, setSide] = React.useState('');
 
   function flip(entry)
@@ -71,18 +73,29 @@ function FlipCards()
 
   const [counter, setCounter] = React.useState(0);
 
+  const [successScreen, setSuccessScreen] = React.useState('hidden');
+
+  const [failureScreen, setFailureScreen] = React.useState('hidden');
+
   function Count(props)
   {
-    if(counter == deck1.length)
-    {
-      changeLastButton('turnbutton hide');
-    
-    }
-    else
+    if(counter < deck1.length-1)
     {
       setCounter(props);
     }
-  }
+    else
+    {
+      if (incorrect === 1)
+      {
+        setFailureScreen('');
+      }
+      else
+      {
+        setSuccessScreen('');
+      }
+    }
+    
+  };
 
   const [buttonClass, setButtonClass] = React.useState("turnButton hide");
 
@@ -127,7 +140,7 @@ function FlipCards()
   
               <div id = "teste" className = {`answerBoxes ${hidebar}`}>
   
-                <div class = {`answerBox`} onClick={() => {hideAnswer('hidden');  selectAnswer('black'); changeButton('turnButton');}} style={{borderColor: 'black'}}>
+                <div class = {`answerBox`} onClick={() => {hideAnswer('hidden');  selectAnswer('black'); changeButton('turnButton'); setIncorrect(1);}} style={{borderColor: 'black'}}>
                   <div>Aprendi agora</div>
                 </div>
                 
@@ -145,19 +158,46 @@ function FlipCards()
                 </div>
               </div>
   
-              <img data-identifier="arrow" class={`${buttonClass}`} onClick={() => {Count(counter+1); selectAnswer(''); hideAnswer(''); changeButton('turnButton hide'); flip('');}}src="assets/turn.png" alt="exit button"/>
+              <img data-identifier="arrow" class={`${buttonClass}`} onClick={() => {selectAnswer(''); hideAnswer(''); changeButton('turnButton hide'); flip(''); Count(counter+1);}}src="assets/turn.png" alt="exit button"/>
 
               <img class={`${lastButton}`} src="assets/turn.png" alt="exit button2"/>
   
             </div>
+
+            
   
           </div>
-  
-          
-  
-        </div>
+      </div>
+
+      <div class={`successScreen ${successScreen}`}>
+          <div class="finalScreenText">
+          PARABÉNS!
+          <img src="assets/party.png"/>
+          <div class="finalScreenTextFooter">
+          Você não esqueceu de nenhum flashcard!
+
+          </div>
+          </div>
+      </div>
+
+      <div class={`successScreen ${failureScreen}`}>
+          <div class="finalScreenText">
+          Putz..
+          <img src="assets/party.png"/>
+          <div class="finalScreenTextFooter">
+          Você esqueceu alguns flashcards..Não desanime! Na próxima você consegue!
+
+          </div>
+          </div>
+      </div>
+
+
+
+        
   
     </div>
+
+    
     );
 }
 
