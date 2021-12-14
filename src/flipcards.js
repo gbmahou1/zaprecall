@@ -140,11 +140,11 @@ function FlipCards()
   
               <div id = "teste" className = {`answerBoxes ${hidebar}`}>
   
-                <div class = {`answerBox`} onClick={() => {hideAnswer('hidden');  selectAnswer('black'); changeButton('turnButton'); setIncorrect(1);}} style={{borderColor: 'black'}}>
+                <div class = {`answerBox`} onClick={() => {hideAnswer('hidden');  selectAnswer('black'); changeButton('turnButton');}} style={{borderColor: 'black'}}>
                   <div>Aprendi agora</div>
                 </div>
                 
-                <div class="answerBox" onClick={() => {hideAnswer('hidden');  selectAnswer('red'); changeButton('turnButton');}} style={{borderColor: 'red'}}>
+                <div class="answerBox" onClick={() => {hideAnswer('hidden');  selectAnswer('red'); changeButton('turnButton'); setIncorrect(1);}} style={{borderColor: 'red'}}>
                   <div>Não lembrei</div>
                 </div>
   
